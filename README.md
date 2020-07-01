@@ -14,6 +14,11 @@ Once you have the built the application, you can start it by executing
 docker run -p 8080:8080 -t curriculum/backend:latest
 ``` 
 
+You can use docker-compose to launch the application as well as the ES instances by executing
+```shell script
+docker-compose up
+``` 
+
 ### Continuous Integration
 The Git Hub project has enabled a continuous build upon creation of pull requests and merges to the Master branch.
 
