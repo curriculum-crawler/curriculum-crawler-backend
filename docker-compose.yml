@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  es:
+    image: elasticsearch:7.6.2
+    environment:
+      - discovery.type=single-node
+  web:
+    image: curriculum/backend:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRINT_DATA_ELASTICSEARCH_CLUSTER-NODES=es:9300
+    depends_on:
+      - es
