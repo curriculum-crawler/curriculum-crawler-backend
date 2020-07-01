@@ -4,7 +4,7 @@
 
 To Build the application execute the following. This will create a docker file in the local repo called curriculum/backend:latest 
 ```shell script
-./gradlew run -p 8080:8080 -t curriculum/backend:latest
+./gradlew build bootBuildImage --imageName=curriculum/backend
 ```
 
 ### Executing
