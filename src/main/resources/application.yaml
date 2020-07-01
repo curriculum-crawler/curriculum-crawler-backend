@@ -1,0 +1,29 @@
+server:
+  servlet:
+    context-path: /
+  http2:
+    enabled: true
+  port: 8080
+
+spring:
+  resources:
+    chain:
+      html-application-cache: true
+      enabled: true
+      strategy:
+        content:
+          enabled: true
+          paths: /webjars/swagger-ui/**.*
+
+
+springdoc:
+  api-docs:
+    groups:
+      enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    display-request-duration: true
+    groups-order: DESC
+
+  show-actuator: true
+
