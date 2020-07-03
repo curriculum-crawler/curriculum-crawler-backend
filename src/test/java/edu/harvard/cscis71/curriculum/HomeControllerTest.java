@@ -1,4 +1,4 @@
-package edu.harvard.cscis71.curriculum.api;
+package edu.harvard.cscis71.curriculum;
 
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class HomeControllerTest {
     public void shouldReturnOKResponse() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/"))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString(HomeController.OK_RESPONSE)));
+                .andExpect(MockMvcResultMatchers.status().isFound())
+                .andExpect(MockMvcResultMatchers.redirectedUrl(HomeController.REDIRECT_STRING));
     }
 }

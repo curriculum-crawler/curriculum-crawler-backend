@@ -1,6 +1,7 @@
-package edu.harvard.cscis71.curriculum.api;
+package edu.harvard.cscis71.curriculum;
 
 import com.google.common.truth.Truth;
+import edu.harvard.cscis71.curriculum.api.HomeControllerWebClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +40,13 @@ public class HttpRequestTest {
     }
 
     @Test
-    public void rootRequestShouldReturnOK() {
-        Truth.assertThat(restTemplate.getForObject(endpoint, String.class)).contains(HomeController.OK_RESPONSE);
+    public void rootRequestShouldReturnRedirect() {
+        Truth.assertThat(restTemplate.getForObject(endpoint, String.class)).contains("Swagger UI");
     }
 
     @Test
-    public void homeRequestWebClientShouldReturnOKResponse() {
+    public void homeRequestWebClientShouldReturnRedirectResponse() {
         HomeControllerWebClient client = new HomeControllerWebClient("http", "localhost", port);
-        Truth.assertThat(client.getResult()).contains(HomeController.OK_RESPONSE);
+        Truth.assertThat(client.getResult()).isNull();
     }
 }

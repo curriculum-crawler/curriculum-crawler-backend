@@ -25,8 +25,6 @@ The Git Hub project has enabled a continuous build upon creation of pull request
 ### API View
 Once you have started the docker image you can view the API documentation by visiting http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
 
-### Notes:
-Based upon the [Spring Doc Reference](https://github.com/springdoc/springdoc-openapi-demos/tree/master/springdoc-openapi-spring-boot-2-webmvc)
 
 
 * Implements simple User

@@ -1,12 +1,28 @@
 plugins {
     id 'org.springframework.boot' version '2.3.1.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id "org.openapi.generator" version "4.3.1"
     id 'java'
+    id 'idea'
 }
 
 group = 'edu.harvard.cscis71'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+ext {
+    springfoxVersion = '2.8.0'
+    apacheCommonsIo = '2.6'
+    apacheCommonsLang = '3.7'
+}
+
+sourceSets {
+    getByName("main") {
+        java {
+            srcDir("$buildDir/generated/src/main/java")
+        }
+    }
+}
 
 configurations {
     compileOnly {
@@ -23,6 +39,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
+    implementation "io.springfox:springfox-swagger2:$springfoxVersion"
+    implementation "io.springfox:springfox-swagger-ui:$springfoxVersion"
+
+    implementation 'javax.xml.bind:jaxb-api:2.2.11'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    implementation 'org.openapitools:jackson-databind-nullable:0.1.0'
+    implementation 'javax.validation:validation-api'
+
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
@@ -34,7 +58,36 @@ dependencies {
     }
     testImplementation 'io.projectreactor:reactor-test'
     testImplementation 'com.google.truth:truth:1.0.1'
+    testImplementation "commons-io:commons-io:$apacheCommonsIo"
+    testImplementation "org.apache.commons:commons-lang3:$apacheCommonsLang"
 }
+
+openApiMeta {
+    packageName = "edu.harvard.cscis71.curriculum"
+}
+
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = "$rootDir/../specs/curriculum-crawler.v1.yaml"
+    outputDir = "$buildDir/generated"
+    apiPackage = "edu.harvard.cscis71.curriculum.api"
+    modelPackage = "edu.harvard.cscis71.curriculum.model"
+    additionalProperties = [
+            packageName: "edu.harvard.cscis71.curriculum",
+            basePackage: "edu.harvard.cscis71.curriculum",
+            configPackage: "edu.harvard.cscis71.curriculum",
+            dateLibrary: "java8",
+            interfaceOnly: "true",
+            useSpringfox: "true"
+    ]
+}
+
+openApiValidate {
+    inputSpec = "$rootDir/../specs/curriculum-crawler.v1.yaml"
+    recommend = true
+}
+
+compileJava.dependsOn tasks.openApiGenerate
 
 test {
     useJUnitPlatform()
@@ -44,3 +97,4 @@ test {
         events "started", "passed", "skipped", "failed"
     }
 }
+
