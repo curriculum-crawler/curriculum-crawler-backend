@@ -36,4 +36,26 @@ public class DocumentApiController implements DocumentApi {
     public ResponseEntity<List<Document>> getDocuments() {
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Document> createDocument(@Valid Document document) {
+        document.setId(UUID.randomUUID());
+        return new ResponseEntity<>(document, HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteDocument(String id) {
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Document> getByDocumentId(String id) {
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Document> updateDocument(String id, @Valid Document document) {
+        return new ResponseEntity<>(document, HttpStatus.OK);
+
+    }
 }

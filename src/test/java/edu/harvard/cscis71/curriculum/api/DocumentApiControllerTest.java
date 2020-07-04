@@ -50,4 +50,27 @@ class DocumentApiControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
+    @Test
+    void createDocument() throws Exception {
+//        String content = testData.get("create-document");
+//        this.mockMvc.perform(MockMvcRequestBuilders.post(DocumentApiController.REQUEST_MAPPING)
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(content)
+//                .accept(MediaType.APPLICATION_JSON))
+//                .andExpect(MockMvcResultMatchers.status().isCreated())
+//                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    void deleteDocument() {
+    }
+
+    @Test
+    void getByDocumentId() {
+    }
+
+    @Test
+    void updateDocument() {
+    }
+
 }
