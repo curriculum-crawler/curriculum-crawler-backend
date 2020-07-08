@@ -68,7 +68,7 @@ openApiMeta {
 
 openApiGenerate {
     generatorName = "spring"
-    inputSpec = "$rootDir/../specs/curriculum-crawler.v1.yaml"
+    inputSpec = "$rootDir/specs/curriculum-crawler.v1.yaml"
     outputDir = "$buildDir/generated"
     apiPackage = "edu.harvard.cscis71.curriculum.api"
     modelPackage = "edu.harvard.cscis71.curriculum.model"
@@ -83,7 +83,7 @@ openApiGenerate {
 }
 
 openApiValidate {
-    inputSpec = "$rootDir/../specs/curriculum-crawler.v1.yaml"
+    inputSpec = "$rootDir/specs/curriculum-crawler.v1.yaml"
     recommend = true
 }
 

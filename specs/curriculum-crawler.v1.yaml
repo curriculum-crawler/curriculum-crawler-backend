@@ -1,0 +1,179 @@
+openapi: 3.0.0
+info:
+  title: curriculum crawler
+  version: '1.0'
+  license:
+    name: MIT
+    url: 'https://opensource.org/licenses/MIT'
+  description: ''
+servers:
+  - url: 'http://54.86.180.15:8080'
+paths:
+  /document:
+    get:
+      summary: Get List of Documents
+      tags:
+        - document
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+      operationId: getDocuments
+      description: Retrieves a list of all Documents
+      parameters: []
+    post:
+      summary: Create Document
+      operationId: createDocument
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+        '502':
+          description: Bad Gateway
+        '503':
+          description: Service Unavailable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Document'
+        description: Document to upload
+      description: Uploads a document
+    parameters: []
+  '/document/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: UUID to retreive
+    get:
+      summary: Retreive Document
+      tags:
+        - document
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+        '502':
+          description: Bad Gateway
+        '503':
+          description: Service Unavailable
+      operationId: getByDocumentId
+      description: Retreives a document by uuid
+    put:
+      summary: Update Document
+      operationId: updateDocument
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+        '502':
+          description: Bad Gateway
+        '503':
+          description: Service Unavailable
+      description: Updates a document
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Document'
+        description: Updated document
+    delete:
+      summary: Delete Document
+      operationId: deleteDocument
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+        '502':
+          description: Bad Gateway
+        '503':
+          description: Service Unavailable
+      description: Deletes a Document
+components:
+  schemas:
+    Document:
+      title: Document
+      type: object
+      x-examples: {}
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: UUID of Document
+        filename:
+          type: string
+        filetype:
+          type: string
+          description: MIME-TYPE of document
+        content:
+          type: string
+          format: binary
+          description: Binary data of file
+        storage-uri:
+          type: string
+          format: uri
+          description: Internal Storage Location
+      required:
+        - filename
