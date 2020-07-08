@@ -19,8 +19,17 @@ You can use docker-compose to launch the application as well as the ES instances
 docker-compose up
 ``` 
 
-### Continuous Integration
+### Continuous Integration / Continuous Delivery
 The Git Hub project has enabled a continuous build upon creation of pull requests and merges to the Master branch.
+- To view the tests executions 
+    1. Select the "Java CI with Gradle" workflow
+    2. Select a commit
+    3. Select the "build" which will populate a tree structure in the center of the page
+    4. Expand the "Build with Gradle" to view the Gradle build log which will display the Unit Tests output (output will be similar as displayed below in the [Unit Test Run](#unit-test-run) Section)
+- The continuous delivery artifact is automatically deployed to https://curriculum-crawler-backend.herokuapp.com
+
+
+
 
 ### API View
 Once you have started the docker image you can view the API documentation by visiting http://localhost:8080
