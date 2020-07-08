@@ -73,4 +73,9 @@ class DocumentApiControllerTest {
     void updateDocument() {
     }
 
+    @Test
+    void uploadDocument() {
+
+    }
+
 }

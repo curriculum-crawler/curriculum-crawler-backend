@@ -6,6 +6,10 @@ server:
   port: 8080
 
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
   resources:
     chain:
       html-application-cache: true
@@ -15,6 +19,8 @@ spring:
           enabled: true
           paths: /webjars/swagger-ui/**.*
 
+upload:
+  path: /home/
 
 springdoc:
   api-docs:
