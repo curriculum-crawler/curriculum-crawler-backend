@@ -1,5 +1,6 @@
 package edu.harvard.cscis71.curriculum.api;
 
+import com.google.common.truth.Truth;
 import edu.harvard.cscis71.curriculum.util.FileUtil;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -37,6 +38,7 @@ class DocumentApiControllerTest {
 
     @BeforeEach
     void setUp() {
+        Truth.assertThat(controller).isNotNull();
     }
 
     @AfterEach
@@ -51,14 +53,20 @@ class DocumentApiControllerTest {
     }
 
     @Test
+    void testGetDocuments() {
+        Truth.assertThat(controller.getDocuments()).isNotNull();
+        Truth.assertThat(controller.getDocuments().getBody()).hasSize(0);
+    }
+
+    @Test
     void createDocument() throws Exception {
-//        String content = testData.get("create-document");
-//        this.mockMvc.perform(MockMvcRequestBuilders.post(DocumentApiController.REQUEST_MAPPING)
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(content)
-//                .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isCreated())
-//                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
+        String content = testData.get("create-document");
+        this.mockMvc.perform(MockMvcRequestBuilders.post(DocumentApiController.REQUEST_MAPPING)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(content)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
     }
 
     @Test

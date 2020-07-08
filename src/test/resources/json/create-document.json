@@ -1,5 +1,4 @@
 {
   "filename": "test.txt",
-  "filetype": "application/text",
-  "content": "txt"
+  "filetype": "application/text"
 }

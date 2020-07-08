@@ -18,6 +18,10 @@ spring:
         content:
           enabled: true
           paths: /webjars/swagger-ui/**.*
+  datasource:
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
 
 upload:
   path: /home/
